@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "recordedAt": "2026-09-24",
+  "network": {
+    "name": "Quai mainnet",
+    "chainId": "9",
+    "zone": "Cyprus-1",
+    "rpc": "https://rpc.quai.network"
+  },
+  "profile": {
+    "name": "quai-receive-v1",
+    "upstreamSafe": "1.4.1",
+    "compiler": "0.7.6+commit.7338295f",
+    "evmVersion": "istanbul",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "sourceHash": "0x8d8eaabfd47ceee9197e27869debd1b9af736cb2a2ae66cf15290ce77568faf9",
+    "proxyRuntimeHash": "0x9700e0d224b2a96ebcd150bd8259e72248eaf0a2d2abcdbee3898a36f652e3b1",
+    "factoryRuntimeHash": "0x1fa056fbb78fa885561f63ad90ddefa7f3347a7482ce223e1b58a6f3e28f67b6"
+  },
+  "factoryDeployment": {
+    "address": "0x00050f801270952BBC9966a911390C8Bf091b539",
+    "transactionHash": "0x007a004408a738d61a6895d777ffb3500f18a05d3ef5a77bfba161c24adac9c2",
+    "blockHash": "0xfa3a0703775409e739b29b8adebfda057a66c93f581f42f6d8725511b3ee3892",
+    "status": 1,
+    "gasUsed": "752021",
+    "feeWei": "29993877946085162205",
+    "runtimeHash": "0x1fa056fbb78fa885561f63ad90ddefa7f3347a7482ce223e1b58a6f3e28f67b6"
+  },
+  "acceptanceAccount": {
+    "address": "0x0052339cB996988701959F86D53e2F146c15c379",
+    "owner": "0x000C890Ba0aaE9B69EBFf8fAd1303391a9954917",
+    "configuration": {
+      "singleton": "0x005c67Bc7603d8e2BC203eC9e61Eb8d9E2Cb4a44",
+      "fallbackHandler": "0x002D7a3fd10e7EF5e45fbdd12D41C6f7C195A21D",
+      "multiSendCallOnly": "0x001426C50C841c012c591E542D0d8162D88B9AE1",
+      "threshold": "1",
+      "guard": null,
+      "modules": []
+    },
+    "creation": {
+      "transactionHash": "0x00700005b2a07128d47322e0dda02b12b209d465d55c5784d77b94b54a3b1d21",
+      "blockHash": "0x75d36c8c76e4f1bad3528fa96ccd64e3da57cac67d772281c82c241421d83657",
+      "feeWei": "10515605796669281690"
+    },
+    "nativeDeposit": {
+      "transactionHash": "0x001c00766642936a9bb1c7bc9a6dda158e25bf2a7a93d9409182d57a48aa78c7",
+      "blockHash": "0x0ebbb6a712bd977070e61cb78f38359b481253cdea7c272248e3e79d6c5a4167",
+      "sender": "0x000C890Ba0aaE9B69EBFf8fAd1303391a9954917",
+      "valueWei": "20000000000000000",
+      "data": "0x",
+      "type": 0,
+      "accessList": [],
+      "status": 1,
+      "gasUsed": "22482",
+      "feeWei": "875401871420411352",
+      "safeReceivedEventMatched": true
+    },
+    "signedSpend": {
+      "transactionHash": "0x0063005d7ea5a1ce5d16c32ed770f718903f298199e9eb898f6716b91cf0edec",
+      "blockHash": "0x8b2e257e6e92ea3a222c587ffe11bcb060029867ed6b635574042203fa96a3bd",
+      "valueWei": "10000000000000000",
+      "feeWei": "2917677561518445336",
+      "executionSuccessEventMatched": true,
+      "resultingNonce": "1",
+      "resultingBalanceWei": "10000000000000000"
+    },
+    "totalAcceptanceFeeWei": "14308685229608138378"
+  },
+  "pelagusFailureComparison": {
+    "failedTransactionHash": "0x0038007e5bd587dfd7b5057d15d62e6154fc1afb512b288f9b79ebb22b18f586",
+    "failedRecipientProfile": "upstream SafeProxy",
+    "failedStatus": 0,
+    "failedData": "0x",
+    "failedType": 0,
+    "failedAccessList": [],
+    "failedGasLimit": "30425",
+    "confirmedRecipientProfile": "quai-receive-v1",
+    "confirmedStatus": 1,
+    "confirmedData": "0x",
+    "confirmedType": 0,
+    "confirmedAccessList": [],
+    "confirmedGasLimit": "45972",
+    "confirmedGasUsed": "22482",
+    "conclusion": "The receiving proxy accepts the transaction shape emitted by the observed Pelagus transfer without accessing the singleton. Its confirmed 22482 gas usage also fits inside Pelagus's observed 30425 gas limit. A final extension UI smoke test remains separate from contract compatibility."
+  },
+  "verification": {
+    "contractTests": 17,
+    "typecheck": true,
+    "upstreamProvenanceCheck": true,
+    "liveRuntimeAndFactoryCreationCodeCheck": true,
+    "staticAnalysis": "scripts/quai/release/evidence/quai-receive-static-analysis-2026-09-22.md"
+  },
+  "limits": [
+    "The acceptance sender used the same empty-calldata and empty-access-list transaction shape as the observed Pelagus failure, but was not submitted from the Pelagus extension UI.",
+    "The funded test did not perform cross-chain bridge settlement or refund recovery.",
+    "The Quai-specific proxy and factory have not received an independent human audit."
+  ]
+}

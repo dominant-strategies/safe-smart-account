@@ -91,6 +91,11 @@ This branch forward-ports the change onto the 1.5.0 codebase and is therefore
 not a byte-for-byte representation of the existing deployment. A deployment
 from this branch requires new addresses and published runtime hashes.
 
+The exact pinned 1.4.1 release bundle, budget-capped Quai factory deployment
+script, protected-key handling, live verifier, and operator instructions are in
+[`scripts/quai`](scripts/quai/README.md). They are committed separately from the
+proxy change so the contract diff remains independently reviewable.
+
 ### Deploy
 
 > [!WARNING]

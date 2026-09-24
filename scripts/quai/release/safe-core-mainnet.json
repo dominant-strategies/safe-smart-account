@@ -1,0 +1,15 @@
+{
+  "version": 4,
+  "mode": "quai-mainnet",
+  "chainId": "9",
+  "rpcUrl": "https://rpc.quai.network",
+  "deploymentStatus": "confirmed",
+  "factory": "0x000055aB1E656689806c89Ad2068B0CA402D40Cd",
+  "factoryCodeHash": "0x50c3cdc4074750a7a974204a716c999edd37482f907608d960b2b025ee0b3317",
+  "safe": {
+    "version": "1.4.1",
+    "singleton": "0x005c67Bc7603d8e2BC203eC9e61Eb8d9E2Cb4a44",
+    "fallbackHandler": "0x002D7a3fd10e7EF5e45fbdd12D41C6f7C195A21D",
+    "multiSendCallOnly": "0x001426C50C841c012c591E542D0d8162D88B9AE1"
+  }
+}

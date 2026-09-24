@@ -1,0 +1,70 @@
+{
+  "observedAt": "2026-09-18T17:48:48.322Z",
+  "chainId": "9",
+  "approvedMaximumQUAI": "600",
+  "totalFeeQUAI": "341.616203424353343254",
+  "deployer": "0x000C890Ba0aaE9B69EBFf8fAd1303391a9954917",
+  "remainingDeployerQUAI": "356.009009536719594554",
+  "transactions": [
+    {
+      "component": "Safe",
+      "hash": "0x000c0039c8d544b95af290ed1f8cfb23b3a710dcb2e383ba16fe2ba14320be85",
+      "status": 1,
+      "contractAddress": "0x005c67Bc7603d8e2BC203eC9e61Eb8d9E2Cb4a44",
+      "blockHash": "0x282a9b6fabed7e4912b18e3a6ed2c3a9da0d190da65729ab1aab36ffccfbf395",
+      "gasUsed": "5157424",
+      "feeQUAI": "198.100399294775165312",
+      "runtimeHash": "0x1fe2df852ba3299d6534ef416eefa406e56ced995bca886ab7a553e6d0c5e1c4",
+      "expectedRuntimeHash": "0x1fe2df852ba3299d6534ef416eefa406e56ced995bca886ab7a553e6d0c5e1c4",
+      "runtimeMatches": true
+    },
+    {
+      "component": "SafeProxyFactory",
+      "hash": "0x00190044bdf5b24105a9fa8f61aba317ae753d554eaaed8e1a8b9322ca22a8e7",
+      "status": 0,
+      "contractAddress": "0x0048D226b0536347941C544e8E02ECF1326F4023",
+      "blockHash": "0x9b6788587362bdbb53889d99b8f6875e32d21b72bc1dc54c30081500d45bc592",
+      "gasUsed": "1439786",
+      "feeQUAI": "55.303225311517369168",
+      "runtimeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+      "expectedRuntimeHash": "0x50c3cdc4074750a7a974204a716c999edd37482f907608d960b2b025ee0b3317",
+      "runtimeMatches": false
+    },
+    {
+      "component": "CompatibilityFallbackHandler",
+      "hash": "0x0045005cd9de432bcde8f23910db1b7e588dbf5b83f2d8fb7fdb51ce488788a0",
+      "status": 1,
+      "contractAddress": "0x002D7a3fd10e7EF5e45fbdd12D41C6f7C195A21D",
+      "blockHash": "0xd78e1d3a4f0b68176caa9cb6109ff7c056c8f8fac3904f56701480e24bf15a5e",
+      "gasUsed": "1290217",
+      "feeQUAI": "52.071613112105454866",
+      "runtimeHash": "0x7c6007a5d711cea8dfd5d91f5940ec29c7f200fe511eb1fc1397b367af3c42f9",
+      "expectedRuntimeHash": "0x7c6007a5d711cea8dfd5d91f5940ec29c7f200fe511eb1fc1397b367af3c42f9",
+      "runtimeMatches": true
+    },
+    {
+      "component": "MultiSendCallOnly",
+      "hash": "0x007000422248d9dcbc52a91c094217093748ca42ae67c3852cd177d1266f8308",
+      "status": 1,
+      "contractAddress": "0x001426C50C841c012c591E542D0d8162D88B9AE1",
+      "blockHash": "0xf94fd264e78e8743b1dacf7bdf0c4306a999eb6f5cbea0012cdb76a59421278b",
+      "gasUsed": "164592",
+      "feeQUAI": "6.694093638980085312",
+      "runtimeHash": "0xecd5bd14a08c5d2122379900b2f272bdf107a7e92423c10dd5fe3254386c9939",
+      "expectedRuntimeHash": "0xecd5bd14a08c5d2122379900b2f272bdf107a7e92423c10dd5fe3254386c9939",
+      "runtimeMatches": true
+    },
+    {
+      "component": "SafeProxyFactory",
+      "hash": "0x005f006f6b26c80758e8f318bc29bfe3f39c27de89c95c64a0a574f22d4480c4",
+      "status": 1,
+      "contractAddress": "0x000055aB1E656689806c89Ad2068B0CA402D40Cd",
+      "blockHash": "0x4db3292dd5bee6e8df63c9f2ab6f52ed88062087d4bb84d7ecf5381e13022076",
+      "gasUsed": "733884",
+      "feeQUAI": "29.446872066975268596",
+      "runtimeHash": "0x50c3cdc4074750a7a974204a716c999edd37482f907608d960b2b025ee0b3317",
+      "expectedRuntimeHash": "0x50c3cdc4074750a7a974204a716c999edd37482f907608d960b2b025ee0b3317",
+      "runtimeMatches": true
+    }
+  ]
+}
