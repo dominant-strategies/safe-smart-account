@@ -35,17 +35,25 @@ describe("Safe", () => {
         it("should be able to receive ETH via transfer", async () => {
             const { safe, gasCappedTransferContract } = await setupTests();
             const safeAddress = await safe.getAddress();
+            const callerAddress = await gasCappedTransferContract.getAddress();
+            const value = ethers.parseEther("1");
 
-            // Notes: It is not possible to load storage + a call + emit event with 2300 gas
-            await expect(gasCappedTransferContract?.transferEth(safeAddress, { value: ethers.parseEther("1") })).to.be.reverted;
+            await expect(gasCappedTransferContract.transferEth(safeAddress, { value }))
+                .to.emit(safe, "SafeReceived")
+                .withArgs(callerAddress, value);
+            expect(await hre.ethers.provider.getBalance(safeAddress)).to.equal(value);
         });
 
         it("should be able to receive ETH via send", async () => {
             const { safe, gasCappedTransferContract } = await setupTests();
             const safeAddress = await safe.getAddress();
+            const callerAddress = await gasCappedTransferContract.getAddress();
+            const value = ethers.parseEther("1");
 
-            // Notes: It is not possible to load storage + a call + emit event with 2300 gas
-            await expect(gasCappedTransferContract?.sendEth(safeAddress, { value: ethers.parseEther("1") })).to.be.reverted;
+            await expect(gasCappedTransferContract.sendEth(safeAddress, { value }))
+                .to.emit(safe, "SafeReceived")
+                .withArgs(callerAddress, value);
+            expect(await hre.ethers.provider.getBalance(safeAddress)).to.equal(value);
         });
 
         it("should be able to receive ETH via call", async () => {

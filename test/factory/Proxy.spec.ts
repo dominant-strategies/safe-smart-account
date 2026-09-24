@@ -11,6 +11,21 @@ describe("Proxy", () => {
         });
     });
 
+    describe("receive", () => {
+        it("should accept an empty-calldata transfer without delegating to the singleton", async () => {
+            const [sender] = await hre.ethers.getSigners();
+            const singleton = await deployContractFromSource(sender, "contract Test {}");
+            const Proxy = await hre.ethers.getContractFactory("SafeProxy");
+            const proxy = await Proxy.deploy(singleton.target);
+            const value = 123n;
+
+            await expect(sender.sendTransaction({ to: await proxy.getAddress(), value }))
+                .to.emit(proxy, "SafeReceived")
+                .withArgs(sender.address, value);
+            expect(await hre.ethers.provider.getBalance(await proxy.getAddress())).to.equal(value);
+        });
+    });
+
     describe("masterCopy", () => {
         const SINGLETON_SOURCE = `
         contract Test {

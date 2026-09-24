@@ -2,6 +2,8 @@
 /* solhint-disable one-contract-per-file */
 pragma solidity >=0.7.0 <0.9.0;
 
+import {INativeCurrencyPaymentFallback} from "../interfaces/INativeCurrencyPaymentFallback.sol";
+
 /**
  * @title Proxy Interface
  * @notice Helper interface to access the singleton address of the Proxy onchain.
@@ -17,7 +19,7 @@ interface IProxy {
  * @author Stefan George - <stefan@gnosis.io>
  * @author Richard Meissner - <richard@gnosis.io>
  */
-contract SafeProxy {
+contract SafeProxy is INativeCurrencyPaymentFallback {
     /**
      * @dev The singleton address to delegate all calls to.
      *      The singleton always needs to be first declared variable, in order to ensure that it is at the same location in the contracts to which calls are delegated.
@@ -33,6 +35,14 @@ contract SafeProxy {
     constructor(address _singleton) {
         require(_singleton != address(0), "Invalid singleton address provided");
         singleton = _singleton;
+    }
+
+    /**
+     * @notice Accept native currency without delegating the empty-calldata call to the singleton.
+     * @dev This preserves the inherited `SafeReceived` event while avoiding a singleton storage access for plain transfers on Quai.
+     */
+    receive() external payable override {
+        emit SafeReceived(msg.sender, msg.value);
     }
 
     /**
