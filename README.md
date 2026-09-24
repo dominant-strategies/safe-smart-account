@@ -44,6 +44,53 @@ A collection of the different Safe contract deployments and their addresses can 
 
 To add support for a new network follow the steps of the `Deploy` section and create a PR in the [Safe deployments](https://github.com/safe-global/safe-deployments) repository.
 
+#### Quai native-receive profile
+
+This fork adds one behavior to `SafeProxy`: empty-calldata native transfers are
+accepted by a local `receive()` function that emits the existing
+`SafeReceived(address,uint256)` event. Calls with calldata still use the
+unchanged proxy fallback and delegate to the Safe singleton.
+
+`SafeProxy` inherits `INativeCurrencyPaymentFallback`, which is the single
+source of truth for the event and payable receive ABI. The interface adds no
+storage and the receive implementation makes no external call.
+
+Quai transactions carry access lists. Handling an empty-calldata transfer in
+the proxy avoids requiring wallets, exchanges, and bridges to include the
+singleton and its storage access when they send native QUAI. The receive path
+does not read or write storage and makes no external call. It adds no admin,
+upgrade, pause, or fund-transfer authority. The tradeoff is that empty-calldata
+behavior is fixed in the proxy and will not delegate to a future singleton.
+
+The factory already derives its creation code from `SafeProxy`, so no factory
+source change is required. Its CREATE2 addresses and bytecode hashes do change.
+Safe's EIP-712 and ERC-1271 behavior remains in the singleton and fallback
+handler, and the factory continues to use EIP-1014 CREATE2. This change does not
+add ERC-4337 infrastructure.
+
+The first `quai-receive-v1` deployment is live on Quai mainnet, Cyprus-1,
+chain ID `9`:
+
+| Component                      | Address                                      |
+| ------------------------------ | -------------------------------------------- |
+| Safe proxy factory             | `0x00050f801270952BBC9966a911390C8Bf091b539` |
+| Safe 1.4.1 singleton           | `0x005c67Bc7603d8e2BC203eC9e61Eb8d9E2Cb4a44` |
+| Compatibility fallback handler | `0x002D7a3fd10e7EF5e45fbdd12D41C6f7C195A21D` |
+| MultiSendCallOnly              | `0x001426C50C841c012c591E542D0d8162D88B9AE1` |
+
+The factory deployment transaction is
+`0x007a004408a738d61a6895d777ffb3500f18a05d3ef5a77bfba161c24adac9c2`.
+Its runtime hash is
+`0x1fa056fbb78fa885561f63ad90ddefa7f3347a7482ce223e1b58a6f3e28f67b6`;
+deployed account proxies have runtime hash
+`0x9700e0d224b2a96ebcd150bd8259e72248eaf0a2d2abcdbee3898a36f652e3b1`.
+
+That deployment was built from Safe 1.4.1 commit
+`bf943f80fec5ac647159d26161446ac5d716a294` with the same receive behavior.
+This branch forward-ports the change onto the 1.5.0 codebase and is therefore
+not a byte-for-byte representation of the existing deployment. A deployment
+from this branch requires new addresses and published runtime hashes.
+
 ### Deploy
 
 > [!WARNING]
