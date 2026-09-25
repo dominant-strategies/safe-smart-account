@@ -1,5 +1,10 @@
 # Quai deployment tooling
 
+For four fresh contracts with no reuse of existing addresses, follow
+[`CLEAN_DEPLOYMENT.md`](CLEAN_DEPLOYMENT.md). The `deploy:quai:clean` command
+deploys each core component and the Quai factory independently, then verifies
+the completed deployment and writes a new manifest.
+
 These scripts reproduce and verify the budget-capped factory deployment used
 for the `quai-receive-v1` Safe 1.4.1 backport on Quai mainnet. They are kept in
 a separate commit from the `SafeProxy` forward-port so reviewers can assess the
